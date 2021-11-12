@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Gallery from "./components/Gallery";
+import Header from "./components/Header";
+import Login from "./components/Login";
+import { useState } from 'react'
 
 function App() {
+
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+
+  console.log(user)
+
+  const signOut = () => {
+    localStorage.removeItem('user')
+    setUser(null)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {
+          !user ? (
+            <Route path='/' element={<Login setUser={setUser} signOut={signOut} />} />
+          ) : (
+            <Route path='/'
+              element={
+                <>
+                  <Header user={user} signOut={signOut} />
+                  <Gallery />
+                </>
+              } />
+          )
+        }
+      </Routes>
+    </Router>
+
   );
 }
 
