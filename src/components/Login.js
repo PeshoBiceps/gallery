@@ -19,7 +19,7 @@ const Login = ({ setUser }) => {
     <div className='h-screen flex items-center justify-center'>
 
       <GoogleLogin
-        clientId="974778876184-ehaqd5n9cdtdrperr765i5k52eecgfoj.apps.googleusercontent.com"
+        clientId="974778876184-h91l56jvpa9fvf9n0e89fp00osp6g1sq.apps.googleusercontent.com"
         render={renderProps => (
           <button className='bg-gray-300 px-2 border-black border-2' onClick={renderProps.onClick} disabled={renderProps.disabled}>Login</button>
         )}
